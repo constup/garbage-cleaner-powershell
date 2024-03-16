@@ -1,0 +1,91 @@
+= Dry run
+:toc:
+:toclevels: 5
+
+== Dry run
+
+Dry run allows you to preview how much space you would save if you run the cleaner.
+
+[IMPORTANT]
+====
+Dry run *will not* perform any cleaning.
+====
+
+=== Only show total space savings
+
+To only show total amount of space which would be freed and total amount of registry keys which would be deleted, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -dryRun
+----
+
+The output will be something like this:
+
+[source,text]
+----
+Dry run summary:
+----------
+Total space saved: 3 MB.
+Total space which would be saved (in exact bytes): 3195650.
+Total registry entries to delete: 0
+----
+
+=== Show details about what would be deleted
+
+To show details about files, directories and registry keys which would be deleted, namely their description, type,
+location and size, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -dryRun -detailed
+----
+
+For each of the files, directories and registry entries which would be deleted, the information in detailed dry run
+will look like this:
+
+[source,text]
+----
+some_obsolete_log
+    Location: ~/temp/something.log
+    Size: 1566850 bytes
+----
+
+At the end, the dry run will also list the total savings, just like in the non-detailed mode.
+
+=== Dry run also detects errors in cleanup list file
+
+Whether you start dry run in detailed or non-detailed mode, it will report some of the errors found in your cleanup list
+configuration file.
+
+==== Detecting wrong entity (file or directory) type
+
+When defining what to delete, apart from the location of the entity, you must specify whether it's a file, directory,
+registry path or registry key.
+
+Dry run (along with the `-clean` command), detects potential errors in entity types and writes them at the end of the
+report. Like this:
+
+[source,text]
+----
+----------
+Dry run summary:
+----------
+Total space saved: 3 MB.
+Total space which would be saved (in exact bytes): 3195650.
+Total registry entries to delete: 0
+----------
+Note: Size calculations do not take into account entries with errors.
+The following errors were found in your cleanup list configuration file:
+---
+Error in test_file : W:\temp\cleanup\Console*1.cpp is a file, but is defined in your cleanup list as a directory.
+Error in test_directory : W:\temp\cleanup\ConsoleApplication1 is a directory, but is defined in your cleanup list as a file.
+----
+
+You can then go to `test_file` and `test_directory` entries in your cleanup list configuration file and fix it.
+
+[NOTE]
+====
+False positives can occur when using wildcards in the location string, which could define both files and directories.
+You can avoid these errors by being more precise when defining a location.
+====

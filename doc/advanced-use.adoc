@@ -1,0 +1,178 @@
+= Advanced use
+:toc:
+:toclevels: 5
+
+== Advanced use
+
+By default, running the constUP Garbage Cleaner will clean up all files, directories and/or registry entries which are
+active in your cleanup list. However, you can further fine tune what exactly you want to be deleted.
+
+[NOTE]
+====
+Even when using custom options in the cleaning command, constUP Garbage Cleaner will still delete only *active* ones.
+Inactive cleaning rules stay inactive and will be ignored, until you explicitly want to activate them.
+====
+
+[IMPORTANT]
+====
+*All* constUP Garbage Cleaner commands have an option to either use the default cleanup list or your custom one. To make
+this documentation shorter, we will not mention instructions for the custom cleanup list anymore - but it's available.
+Just use the `-cleanupListFile` option and set the path to your own cleanup list.
+====
+
+=== Cleaning garbage only from specific applications
+
+To clean garbage produced by a specific application, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -applications "Firefox"
+----
+
+or clean multiple applications with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -applications "Firefox,Chrome"
+----
+
+Remember, you can list the names of available applications with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listApplications
+----
+
+=== Cleaning garbage by categories
+
+* `category` - category of the application, like "IDE", "game", "browser",...
+
+link:categories.adoc[Categories documentation]
+
+To clean garbage by category, for example, only clean garbage from browsers and/or IDEs, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -categories "browser"
+----
+
+or clean multiple categories with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -categories "browser,IDE"
+----
+
+Remember, you can list all available categories with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listCategories
+----
+
+=== Cleaning garbage by entity categories
+
+* `entity_category` - category of the garbage entity itself, like "log", "crash log", "installation backup",...
+
+To clean up garbage by entity category, for example, only clean logs and crash logs, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -entityCategories "log"
+----
+
+or, clean multiple entity categories with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -entityCategories "log,crash log"
+----
+
+Remember, you can list all available entity categories with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listEntityCategories
+----
+
+=== Cleaning garbage by its type
+
+If you want to clean only files, or registry entries, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -types "file"
+----
+
+or, clean multiple types with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -types "file,registry value"
+----
+
+Remember, you can view the list of all available types with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listTypes
+----
+
+=== Cleaning by your own custom categories
+
+If some rules in your cleanup list have the optional `custom_category` property, you can use the contents of this
+property to filter out which entities to delete. Simply run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -customCategories "your category,some other category"
+----
+
+Remember, you can get a list of all available custom categories (which you have defined) with:
+
+[source,shell]
+----
+pwsh .\construp-cleaner.ps1 -listCustomCategories
+----
+
+=== Mix cleaning rules
+
+You can mix two or more cleaning rules, and they will all be applied when cleaning:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -applications "Firefox,Chrome" -entityCategories "log,crash log"
+----
+
+In this case, the cleaner will process all rules which are active, have "Firefox" or "Chrome" as their `application`
+and belong to "log" or "crash log" entity categories.
+
+== A note on command option execution priority
+
+If you do something like this:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -customCategories "some category" -applications "JetBrains" -listActive
+----
+
+you will notice that it will not run the cleaning process, but list the active cleaning rules instead. This is because
+command options have priorities of execution. *Whichever option has the highest priority will be executed*, regardless
+of the position of the option in your command on terminal. In our case, `-listActive` has the higher priority than
+`-clean`, even though it is written after `-clean`.
+
+Here is the list of command options, sorted from the highest to the lowest priority:
+
+* `help`
+* `listActive`
+* `listInactive`
+* `listApplications`
+* `listCategories`
+* `listEntityCategories`
+* `listTypes`
+* `listCustomCategories`
+* `dryRun`
+* `clean`
+
+This is implemented to ensure that each script execution has one purpose and one purpose only - in order to reduce bugs
+and potential unwanted side effects when running constUP Garbage Cleaner.

@@ -1,0 +1,59 @@
+= Categories
+:toc:
+:toclevels: 5
+
+== Introduction
+
+Categories are implemented in order to offer users a way to fine tune their cleaning process, while keeping it simple
+for other users to reuse the same cleaning rules. This is why:
+
+[IMPORTANT]
+====
+The list of available categories is *static* and defined in the constUP Garbage Cleaner's
+link:../cleanup-list.schema.json[JSON schema].
+====
+
+If none of the categories are suitable for your cleanup rule, you can either:
+
+1. Create an issue and request for a category to be included in the JSON schema. Please make sure to read and understand
+link:contributing.adoc[Contribution guidelines] before opening an
+https://github.com/constup/garbage-cleaner/issues[issue].
+
+2. Use `custom_category` field instead.
+
+== Available categories
+
+
+|===
+|name |description
+
+|`IDE`
+|Integrated Development Environments and code editors. Examples: VSCode, PHPStorm, IntelliJIdea, Visual Studio,...
+
+|`government`
+|Government related applications. Examples: personal identity card readers
+
+|`Windows`
+|Microsoft Windows related files, directories and registry entries
+
+|`Windows update`
+|Windows update
+
+|`.NET`
+|.NET runtime related files, directories and registry entries
+
+|`my application`
+| Your own and personal applications
+
+|`my files`
+| Your own and personal files.
+
+|`my registry entries`
+| Your own and personal registry entries.
+|===
+
+== Links
+
+* link:../cleanup-list.schema.json[JSON schema] where categories are defined
+* link:cleanup-list-file.adoc[Cleanup list file and listing available applications, categories,...] documentation page
+* link:advanced-use.adoc[Advanced use], including cleaning by categories

@@ -1,0 +1,54 @@
+= Contributing
+:toc:
+:toclevels: 5
+
+== Contributing to development (source code)
+
+At this moment, only approved contributors are allowed to change the source code. However, you are welcome to open an
+https://github.com/constup/garbage-cleaner/issues[issue], if you notice a bug or have a feature request.
+
+=== Requesting features
+
+If you are requesting a feature, please note the following:
+
+* Make sure to read link:planned-features.adoc[Planned features]. That page contains a list of features which are
+already planned to be developed and there is no need to open a new issue to ask for them.
+* This is meant to be a simple application to clean up garbage files, directories and registry entries. Features not
+related to deleting files, directories and registry entries will not be implemented.
+* Windows 11 is the only officially supported operating system, for now. There are plans to implement support for other
+operating systems which can run PowerShell, but this does not yet have a delivery date. Only features related to
+Windows 11 will be considered.
+
+== Contributing to the Cleanup List
+
+You can contribute to the cleanup list by opening an https://github.com/constup/garbage-cleaner/issues[issue] (until
+a better way is implemented).
+
+When contributing, *always* attach a JSON file with your cleanup rules. The JSON file *must* follow provided
+link:../cleanup-list.schema.json[JSON schema], with exception to enum values for categories and entity categories. These
+enums can be expanded to include new entries, by following two rules: 1. reuse existing entries as much as you can
+and 2. keep it simple and not too granular.
+
+[IMPORTANT]
+====
+Even though constUP Garbage Cleaner is published under https://www.mozilla.org/en-US/MPL/2.0/[MPL 2.0], and its sections
+*6. Disclaimer of Warranty* and *7. Limitation of Liability* - for each new submission to the cleanup list *maintainers
+of this repository should manually check them for safety (to be deleted) and confirm from verified sources (ex. software
+publisher's official documentation) that it is a garbage file which can be deleted without bringing (significant)
+instability to user's system*.
+====
+
+This is why including the submission in the cleanup list file might take some time. You are, however, welcome to host
+your own cleanup file as a gist or in your own separate repository. This is also why it is *important* to include some
+information about the file you want to mark as garbage and, if possible, how to reproduce its creation. Providing a link
+to application's official documentation which confirms that it can be marked as garbage also helps.
+
+=== Changing the JSON schema
+
+Changing the JSON schema usually requires new version of software to be developed and old versions to become
+incompatible with the new cleanup lists. This will be done, from time to time, after serious consideration and when
+bumping the major version of the software. Feature requests to change the JSON schema will be considered, but their
+implementation may wait until the next major release of the software.
+
+When submitting feature requests for changing the JSON schema, please keep in mind that one of the main goals of it is
+to be minimalistic and allow users to configure their cleanup lists without much effort.

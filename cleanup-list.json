@@ -1,0 +1,13 @@
+{
+  "jetbrains_java_error": {
+    "application": "JetBrains",
+    "category": "IDE",
+    "entity_category": "crash log",
+    "description": "Java error log of JetBrains tools. Can be several gigabytes.",
+    "delete" : {
+      "type": "file",
+      "location": "~/java_error_in_*.hprof"
+    },
+    "active": true
+  }
+}

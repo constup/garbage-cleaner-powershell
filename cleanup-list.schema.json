@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "https://github.com/constup/cleanup/blob/master/cleanup-list.schema.json",
+  "title": "constUP Cleanup list schema",
+  "description": "Describes cleanup operations on files, folders and registry entries for constUP Cleanup to use.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z0-9_]+$": {
+        "type": "object",
+        "properties": {
+          "application": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["IDE", "government", "Windows", "Windows update", ".NET", "installer", "my application",
+              "my files", "my registry entries"]
+          },
+          "entity_category": {
+            "type": "string",
+            "enum": ["crash log", "log", "cache", "backup", "old version"]
+          },
+          "custom_category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "delete": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["file", "directory", "registry value", "registry key"]
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "required": ["type", "location"],
+            "additionalProperties": false
+          }
+        },
+      "required": ["application", "category", "entity_category", "description", "delete", "active"]
+    }
+  },
+  "additionalProperties": false
+}

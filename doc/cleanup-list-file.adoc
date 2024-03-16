@@ -1,0 +1,199 @@
+= Cleanup list file and listing available applications, categories,...
+:toc:
+:toclevels: 5
+
+== Cleanup list file
+
+The default cleanup list file is provided by this repository and is available at:
+link:../cleanup-list.json[`cleanup-list.json`]. This file defines what will be cleaned.
+
+[IMPORTANT]
+====
+You can create your own cleanup list file! Or even have multiple files and use them whenever you need them.
+====
+
+=== JSON Schema for cleanup rules
+
+https://json-schema.org/[JSON schema] for cleanup rules is available at
+link:../cleanup-list.schema.json[cleanup-list.schema.json]
+
+=== Cleanup list entry properties
+
+Each entry in the cleanup list represents one cleanup rule. Each rule has the following properties:
+
+* `application` - the name of the application which produced the garbage
+* `category` - category of the application, like "IDE", "game", "browser",... (link:categories.adoc[Categories]
+documentation)
+* `entity_category` - category of the garbage entity itself, like "log", "crash log", "installation backup",...
+* `custom_category` - optional field which you can use to categorize garbage however you like
+* `delete`
+** `type` - type of the garbage. One of the following: `file`, `directory`, `registry value`, `registry key`
+*** `file` will delete a single file.
+*** `directory` will delete a directory and all contents within it (files, subdirectories).
+*** `registry value` will delete a single Windows Registry value.
+*** `registry key` will clean up a registry Key ("folder"), by deleting all values within it. However, it will not
+delete the key itself or its sub-keys (useful for cleaning Windows Most Recently Used lists and similar Registry
+values).
+** `location` - location of the garbage (path on disk or in registry)
+* `active` - whether the cleanup rule is active or not. Only active rules will be used during cleanup.
+
+== How to define locations
+
+Since constUP Garbage Cleaner uses JSON for configuration, if you want to use backslashes (`\`) in `location`
+properties, you will have to "escape them". For example, to enter a location like:
+
+[source,text]
+----
+C:\Users\YourUser\SomeDirectory\SomeFile.log
+----
+
+your `location` should look like:
+
+[source,text]
+----
+"location": "C:\\Users\\YourUser\\SomeDirectory\\SomeFile.log"
+----
+
+=== Filesystem (files and directories)
+
+[IMPORTANT]
+====
+It is *recommended* (but not mandatory), to either use:
+
+* absolute paths to files and directories (example: `C:\Users\YourUser\SomeDirectory\SomeFile.log`)
+* paths with syntax variables, like `~\SomeDirectory\SomeFile.log` or `%AppData%\SomeDirectory\SomeFile.log`
+
+For a ful list of syntax variables see: https://ss64.com/nt/syntax-variables.html[Syntax Variables]
+====
+
+Here is the list of the most common syntax variables and their actual locations:
+
+* `%AllUsersProfile%` - `C:\ProgramData`
+* `%AppData%` - `C:\Users\{username}\AppData\Roaming`
+* `%CommonProgramFiles%` - `C:\Program Files\Common Files`
+* `%CommonProgramFiles(x86)%` - `C:\Program Files (x86)\Common Files`
+* `%HomeDrive%` - `C:\`
+* `%LocalAppData%` - `C:\Users\{username}\AppData\Local`
+* `%ProgramData%` - `C:\ProgramData`
+* `%ProgramFiles%` - `C:\Program Files` or `C:\Program Files (x86)`
+* `%ProgramFiles(x86)%` - `C:\Program Files (x86)`
+* `%Public%` - `C:\Users\Public`
+* `%SystemDrive%` - `C:\`
+* `%SystemRoot%` - `C:\Windows`
+* `%Temp%` - `C:\Users\{Username}\AppData\Local\Temp`
+* `%UserProfile%` - `C:\Users\{username}`
+
+[IMPORTANT]
+====
+If you are using relative paths (like: `..\someDirectory\someFile.log`) in your locations in the cleanup list
+configuration file, take into account that PowerShell treats relative locations relative to the directory where the
+script was started from.
+====
+
+If you are always going to enter the directory where `constup-garbage-cleaner.ps1` is located and run it directly from there,
+then you can use relative paths without issues. However, if you add constUP Garbage Cleaner to your system `PATH` and
+can run it from any directory, then these relative locations will no longer be valid.
+
+==== Wildcards
+
+constUP Garbage Cleaner supports wildcards in locations, just like any other PowerShell script. Short version:
+
+* Asterisk (`*`) matches zero or more occurrences of any character.
+* Question mark (`?`) matches exactly one character.
+* Left bracket (`[`) character and right bracket (`]`) character surround a set of characters to be matched.
+
+Long version (in official PowerShell documentation):
+https://learn.microsoft.com/en-us/powershell/scripting/samples/working-with-files-folders-and-registry-keys?view=powershell-7.4#matching-item-names-with-wildcards
+
+=== Registry (keys and values)
+
+Registry keys and values can be used in `location` like this: `HKCU:\SomeKey\SomeValue`. There are 5 registry roots,
+also known as "hives" in Windows registry:
+
+1. `HKLM:\` - `HKEY_LOCAL_MACHINE`
+2. `HKCU:\` - `HKEY_CURRENT_USER`
+3. `HKCR:\` - `HKEY_CLASSES_ROOT`
+4. `HKU:\` - `HKEY_USERS`
+5. `HKCC:\` - `HKEY_CURRENT_CONFIG`
+
+[IMPORTANT]
+====
+Depending on the hive you are trying to clean, you may or may not need to start PowerShell as administrator and then run
+constUP Garbage Cleaner. Usually, no elevated rights are needed for keys and values in `HKEY_CURRENT_USER`.
+====
+
+== Listing cleanup rules
+
+There are several filters for listing cleanup rules.
+
+[IMPORTANT]
+====
+*All* constUP Garbage Cleaner commands have an option to either use the default cleanup list or your custom one. To make
+this documentation shorter, we will not mention instructions for the custom cleanup list anymore - but it's available.
+Just use the `-cleanupListFile` option and set the path to your own cleanup list.
+====
+
+=== List active cleanup rules
+
+The following command will list only active cleanup rules:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listActive
+----
+
+=== List inactive cleanup rules
+
+To list only inactive cleanup rules, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listInactive
+----
+
+=== List covered applications
+
+To view the list of all applications present in the cleanup list file, run the following command:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listApplications
+----
+
+=== List categories
+
+link:categories.adoc[Categories documentation]
+
+To view the list of all categories present in the cleanup file, run the following command:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listCategories
+----
+
+=== List entity categories
+
+To view the list of all entity categories present in the cleanup file, run the following command:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listEntityCategories
+----
+
+=== List types
+
+To view the list of all garbage types present in the cleanup file, run the following command:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listTypes
+----
+
+=== List custom categories
+
+To view the list of all custom categories (which you have defined), run the following command:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -listCustomCategories
+----

@@ -1,0 +1,186 @@
+= constUP Garbage Cleaner
+:toc:
+:toclevels: 5
+
+== Description
+
+Simple, easy to use and configurable garbage cleaner for Windows. Deletes files, directories and registry entries.
+Written in PowerShell 7 with simple JSON configuration. Tested on PowerShell 7.4.
+
+=== What can it delete
+
+constUP Garbage cleaner can delete:
+
+* files
+* directories
+* Single Windows Registry values
+* All Windows Registry values inside a specified Key ("folder")
+
+Of course, if you want to clean anything which does not belong to the current user (for example from
+`HKEY_LOCAL_MACHINE` in Windows registry), or clean system files, you must first open PowerShell as administrator and
+then run constUP Garbage Cleaner.
+
+The default cleanup list bundled with constUP Garbage Cleaner does not require running as an administrator.
+
+=== Preview of commands
+
+Here is a preview of some of the commands. If you already have experience with running applications from terminal, you
+might get a general idea about this application from these commands. Of course, each command (*and more*) is covered in
+this documentation:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean
+pwsh .\constup-garbage-cleaner.ps1 -clean -cleanupListFile /path/to/your/cleanup-list.json
+pwsh .\constup-garbage-cleaner.ps1 -dryRun
+pwsh .\constup-garbage-cleaner.ps1 -dryRun -detailed
+pwsh .\constup-garbage-cleaner.ps1 -listActive
+pwsh .\constup-garbage-cleaner.ps1 -listApplications
+pwsh .\constup-garbage-cleaner.ps1 -listCategories
+pwsh .\constup-garbage-cleaner.ps1 -clean -applications "Firefox,Chrome"
+pwsh .\constup-garbage-cleaner.ps1 -clean -types "file,registry value"
+pwsh .\constup-garbage-cleaner.ps1 -clean -customCategories "your category,some other category"
+pwsh .\constup-garbage-cleaner.ps1 -clean -applications "Firefox,Chrome" -entityCategories "log,crash log"
+----
+
+== Why?
+
+There is a number of tools available on the market, both free and commercial, for cleaning garbage files and registry
+entries. However, each of them has one or more of the following downsides:
+
+* Free versions have limited features compared to their paid ones.
+* They are deleting more than they should. This is especially true when deleting browser data with these tools. Deleting
+too much have different effects, depending on the tool: from logging you out of websites and destroying your sessions to
+even messing up CSS of web pages. (Note: these are real world examples).
+* They are not deleting what they should. Many tools and applications are not covered by other cleaners. For example,
+did you know that WebStorm can produce a Java crash log of 3+ GB in your Windows user directory? That's the very first
+rule in the default cleanup list of constUP Garbage Cleaner, and is the primary inspiration for building this tool.
+* You can not expand their set of cleaning rules (easily). You've just found out that some application on your computer
+is creating garbage not covered by your cleaning rules? Just open your `cleanup-list.json` and add the rule to clean it
+in a matter of minutes (even seconds, if you type fast enough).
+* They are filled with bloatware which has nothing to do with cleaning the system.
+* Many of them outright lie about the amount of space saved by running their software. This is especially noticeable in
+antivirus software with cleaning features.
+* *They are "pinging home" - collecting your information and uploading it to their servers.* Especially those which have
+"software updater tools", which are harvesting the list of *all software which you have installed on your computer,
+determining their versions and uploading that information to their servers.*
+* They are closed source and have access to all files on your computer and all registry entries.
+* You can not (easily) process garbage which you or applications which you have written produce. For example, if you are
+creating 3D renders and have a lot of temporary throwaway render samples, you can define cleaning rules to clean them up
+with constUP Garbage Cleaner. Or, if you are a programmer and your application produces logs which you need only
+temporarily, you can define cleaning rules for those logs as well.
+* Even if defining custom rules is possible, it is not easy to transfer them to another machine, let alone share them
+with the community and improve cleaning performance for many users.
+* They do not support multiple cleaning configurations and rule sets.
+
+== Prerequisites and compatibility
+
+* Microsoft Windows 11 (it also should work on Windows 10, but that's not tested)
+* Microsoft PowerShell 7
+** Installation instructions:
+https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
+
+== Installation and updating
+
+=== Method 1: Download a release
+
+Download a release from https://github.com/constup/garbage-cleaner/releases, and extract it to your desired location.
+
+To update, just download a newer release.
+
+=== Method 2: Cloning this repository
+
+[source,shell]
+----
+git clone git@github.com:constup/garbage-cleaner.git
+----
+
+or:
+
+[source,shell]
+----
+git clone https://github.com/constup/garbage-cleaner.git
+----
+
+or with GitHub CLI:
+
+[source,shell]
+----
+gh repo clone constup/garbage-cleaner
+----
+
+To update, open terminal and enter the directory where constUP Garbage Cleaner is located, then run:
+
+[source,shell]
+----
+git fetch origin master
+git pull origin master
+----
+
+=== Optional: Add constUP Garbage Cleaner to `PATH`
+
+To run constUP Garbage Cleaner from any location, you can add it to your system's `PATH` environment variable.
+
+A handy PowerShell script is provided in this repository. Just run link:add-to-path.ps1[add-to-path.ps1], and it will
+add constUP Garbage Cleaner's directory to your user's `PATH` environment variable. Don't worry about running this
+script more than once - it only adds to `PATH` if the directory is not already there. You can run it with:
+
+[source,shell]
+----
+pwsh .\add-to-path.ps1
+----
+
+== Basic use
+
+This describes the basic use of the constUP Garbage Cleaner. Basic use only checks if the cleanup rule is active or not.
+
+[IMPORTANT]
+====
+constUP Garbage Cleaner has more advanced usage options which are covered in link:doc/advanced-use.adoc[Advanced use].
+====
+
+=== Cleaning by using default set of rules
+
+The following command will perform the cleaning using the default cleaning rules provided in
+link:cleanup-list.json[cleanup-list.json].
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean
+----
+
+=== Cleaning by using custom set of rules
+
+If you are not happy with the default set of cleaning rules, you can use the following command to run the cleaner with
+your own set of rules. The cleaning rules are covered in
+link:doc/cleanup-list-file.adoc[Cleanup list file and listing available applications, categories,...].
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -clean -cleanupListFile /path/to/your/cleanup-list.json
+----
+
+[IMPORTANT]
+====
+*All* constUP Garbage Cleaner commands have an option to either use the default cleanup list or your custom one. To make
+this documentation shorter, we will not mention instructions for the custom cleanup list anymore - but it's available,
+just like in the example above. Just use the `-cleanupListFile` option and set the path to your own cleanup list.
+====
+
+== More documentation
+
+The following documentation is also available:
+
+* link:doc/dry-run.adoc[Dry run] (with cleanup list configuration file error detection)
+* link:doc/cleanup-list-file.adoc[Cleanup list file and listing available applications, categories,...]
+** link:doc/categories.adoc[Categories]
+* link:doc/advanced-use.adoc[Advanced use] (including cleaning by property filters, for example: application,
+category,...)
+* link:doc/planned-features.adoc[Planned features] - what's coming up next
+* link:doc/contributing.adoc[Contributing] - guidelines for software contribution, feature requests and populating the
+cleanup list
+
+== License
+
+link:LICENSE[Mozilla Public License 2.0] (also available on Mozilla's website at:
+https://www.mozilla.org/en-US/MPL/2.0/[MPL 2.0])
