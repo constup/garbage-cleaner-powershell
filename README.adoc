@@ -180,6 +180,12 @@ category,...)
 * link:doc/contributing.adoc[Contributing] - guidelines for software contribution, feature requests and populating the
 cleanup list
 
+== Support
+
+If you like this tool or find it useful, consider buying me a nice cup of coffee. Coffee fuels open source.
+
+link:https://ko-fi.com/E1E3VQUK2[image:https://ko-fi.com/img/githubbutton_sm.svg[Ko-fi]]
+
 == License
 
 link:LICENSE[Mozilla Public License 2.0] (also available on Mozilla's website at:
