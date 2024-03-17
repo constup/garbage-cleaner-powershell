@@ -11,7 +11,7 @@ https://github.com/constup/garbage-cleaner/issues[issue], if you notice a bug or
 
 If you are requesting a feature, please note the following:
 
-* Make sure to read link:planned-features.adoc[Planned features]. That page contains a list of features which are
+* Make sure to read link:doc/planned-features.adoc[Planned features]. That page contains a list of features which are
 already planned to be developed and there is no need to open a new issue to ask for them.
 * This is meant to be a simple application to clean up garbage files, directories and registry entries. Features not
 related to deleting files, directories and registry entries will not be implemented.
