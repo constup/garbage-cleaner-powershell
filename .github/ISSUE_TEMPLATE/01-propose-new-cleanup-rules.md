@@ -1,6 +1,6 @@
 ---
-name: Submit a cleanup rule
-about: Submit a cleanup rule to be included in the default cleanup list
+name: Propose new cleanup rules
+about: Propose new cleanup rules to be included in the default cleanup list
 title: "[New cleanup rules]"
 labels: ''
 assignees: ''
@@ -8,6 +8,8 @@ assignees: ''
 ---
 
 Note: All cleanup list rules must follow the [JSON Schema](https://github.com/constup/garbage-cleaner-powershell/blob/master/cleanup-list.schema.json). Make sure to read [Contributing to the cleanup list](https://github.com/constup/garbage-cleaner-powershell/blob/master/CONTRIBUTING.adoc#contributing-to-the-cleanup-list) before opening an issue.
+
+Note: If you do not have a clear list of cleanup rules and want to request an expansion of the cleanup list, please open a new **Feature request** instead.
 
 **Cleanup list rules (in JSON format)**
 ```json
