@@ -1,7 +1,7 @@
 ---
 name: Submit a cleanup rule
 about: Submit a cleanup rule to be included in the default cleanup list
-title: "[New cleanup rule]"
+title: "[New cleanup rules]"
 labels: ''
 assignees: ''
 
