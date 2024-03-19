@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Before submitting a feature request, make sure to read [Requesting features](https://github.com/constup/garbage-cleaner-powershell/blob/master/CONTRIBUTING.adoc#requesting-features) and (which features are already planned to be developed)[https://github.com/constup/garbage-cleaner-powershell/blob/master/doc/planned-features.adoc].
+Before submitting a feature request, make sure to read [Requesting features](https://github.com/constup/garbage-cleaner-powershell/blob/master/CONTRIBUTING.adoc#requesting-features) and [which features are already planned to be developed](https://github.com/constup/garbage-cleaner-powershell/blob/master/doc/planned-features.adoc).
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
