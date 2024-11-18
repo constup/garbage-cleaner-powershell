@@ -9,5 +9,16 @@
       "location": "~/java_error_in_*.hprof"
     },
     "active": true
+  },
+  "gradio_temporary_files": {
+    "application": "Gradio",
+    "category": "AI",
+    "entity_category": "temporary files",
+    "description": "User temporary files for Gradio UI. Gradio is a Python UI library used by many AI applications.",
+    "delete": {
+      "type": "directory",
+      "location": "~/AppData/Local/Temp/gradio"
+    },
+    "active": true
   }
 }

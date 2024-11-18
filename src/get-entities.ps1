@@ -41,7 +41,7 @@ function Get-Entities {
                         $fileItem.size = $file.Length
                         $fileItem.rule = $name
                         $files.Add($fileItem)
-                        $sizeCounter += 1
+                        $sizeCounter += $fileItem.size
                     }
                     elseif (Test-Path -Path $location -PathType Container)
                     {

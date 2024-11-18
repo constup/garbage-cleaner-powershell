@@ -3,7 +3,7 @@ function Remove-File {
         [Parameter(Mandatory=$true)]
         [string]$fileName,
         [Parameter(Mandatory=$true)]
-        [int]$size
+        [long]$size
     )
 
     if (Test-Path $fileName) {
@@ -22,7 +22,7 @@ function Remove-Directory {
         [Parameter(Mandatory=$true)]
         [string]$directoryName,
         [Parameter(Mandatory=$true)]
-        [int]$size
+        [long]$size
     )
 
     if (Test-Path $directoryName) {

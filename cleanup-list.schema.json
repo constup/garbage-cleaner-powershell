@@ -6,45 +6,69 @@
   "type": "object",
   "patternProperties": {
     "^[a-z0-9_]+$": {
-        "type": "object",
-        "properties": {
-          "application": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string",
-            "enum": ["IDE", "government", "Windows", "Windows update", ".NET", "installer", "my application",
-              "my files", "my registry entries"]
-          },
-          "entity_category": {
-            "type": "string",
-            "enum": ["crash log", "log", "cache", "backup", "old version"]
-          },
-          "custom_category": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "delete": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": ["file", "directory", "registry value", "registry key"]
-              },
-              "location": {
-                "type": "string"
-              }
-            },
-            "active": {
-              "type": "boolean"
-            },
-            "required": ["type", "location"],
-            "additionalProperties": false
-          }
+      "type": "object",
+      "properties": {
+        "application": {
+          "type": "string"
         },
-      "required": ["application", "category", "entity_category", "description", "delete", "active"]
+        "category": {
+          "type": "string",
+          "enum": [
+            "IDE",
+            "government",
+            "Windows",
+            "Windows update",
+            ".NET",
+            "installer",
+            "my application",
+            "my files",
+            "my registry entries",
+            "AI"
+          ]
+        },
+        "entity_category": {
+          "type": "string",
+          "enum": [
+            "crash log",
+            "log",
+            "cache",
+            "backup",
+            "old version",
+            "temporary files"
+          ]
+        },
+        "custom_category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "delete": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["file", "directory", "registry value", "registry key"]
+            },
+            "location": {
+              "type": "string"
+            }
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "required": ["type", "location"],
+          "additionalProperties": false
+        }
+      },
+    "required": [
+      "application",
+      "category",
+      "entity_category",
+      "description",
+      "delete",
+      "active"
+    ]
     }
   },
   "additionalProperties": false
