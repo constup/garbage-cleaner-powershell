@@ -92,21 +92,21 @@ To update, just download a newer release.
 
 [source,shell]
 ----
-git clone git@github.com:constup/garbage-cleaner.git
+git clone git@github.com:constup/garbage-cleaner-powershell.git
 ----
 
 or:
 
 [source,shell]
 ----
-git clone https://github.com/constup/garbage-cleaner.git
+git clone https://github.com/constup/garbage-cleaner-powershell.git
 ----
 
 or with GitHub CLI:
 
 [source,shell]
 ----
-gh repo clone constup/garbage-cleaner
+gh repo clone constup/garbage-cleaner-powershell
 ----
 
 To update, open terminal and enter the directory where constUP Garbage Cleaner is located, then run:
