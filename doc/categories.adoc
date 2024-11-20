@@ -53,6 +53,9 @@ https://github.com/constup/garbage-cleaner/issues[issue].
 
 |`AI`
 | AI and machine learning applications (LLMs, image diffusers,...)
+
+|`communication`
+| Communication and messaging applications (Viber, WhatsApp, Skype,...)
 |===
 
 == Links
