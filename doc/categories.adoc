@@ -50,6 +50,9 @@ https://github.com/constup/garbage-cleaner/issues[issue].
 
 |`my registry entries`
 | Your own and personal registry entries.
+
+|`AI`
+| AI and machine learning applications (LLMs, image diffusers,...)
 |===
 
 == Links
