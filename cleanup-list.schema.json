@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "id": "https://github.com/constup/cleanup/blob/master/cleanup-list.schema.json",
   "title": "constUP Cleanup list schema",
-  "description": "Describes cleanup operations on files, folders and registry entries for constUP Cleanup to use.",
+  "description": "Describes cleanup operations on files, folders and registry entries for constUP Garbage Cleaner to use.",
   "type": "object",
   "patternProperties": {
     "^[a-z0-9_]+$": {
