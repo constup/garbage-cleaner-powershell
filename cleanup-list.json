@@ -42,5 +42,16 @@
       "location": "~/AppData/Local/Temp/DiagOutputDir/RdClientAutoTrace-*.etl"
     },
     "active": true
+  },
+  "viber_update_temporary_installation": {
+    "application": "Viber",
+    "category": "communication",
+    "entity_category": "temporary files",
+    "description": "Viber updater zipped installation.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Temp/update.zip"
+    },
+    "active": true
   }
 }
