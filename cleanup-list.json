@@ -31,5 +31,16 @@
       "location": "~/AppData/Local/Temp/gradio"
     },
     "active": true
+  },
+  "wslg_rd_client_auto_trace": {
+    "application": "WSL",
+    "category": "Windows",
+    "entity_category": "log",
+    "description": "WSLg (Windows Subsystem for Linux GUI) remote desktop client auto trace logs. Can be generated when using Docker. Can be dozens of gigabytes.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Temp/DiagOutputDir/RdClientAutoTrace-*.etl"
+    },
+    "active": true
   }
 }
