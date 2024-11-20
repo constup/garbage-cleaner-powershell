@@ -1,12 +1,23 @@
 {
-  "jetbrains_java_error": {
+  "jetbrains_java_error_heap_dump": {
     "application": "JetBrains",
     "category": "IDE",
     "entity_category": "crash log",
-    "description": "Java error log of JetBrains tools. Can be several gigabytes.",
+    "description": "Java error heap dump of JetBrains tools. Can be several gigabytes.",
     "delete" : {
       "type": "file",
       "location": "~/java_error_in_*.hprof"
+    },
+    "active": true
+  },
+  "jetbrains_java_error_logs": {
+    "application": "JetBrains",
+    "category": "IDE",
+    "entity_category": "crash log",
+    "description": "Java error logs for various JetBrains tools.",
+    "delete": {
+      "type": "file",
+      "location": "~/java_error_in_*.log"
     },
     "active": true
   },

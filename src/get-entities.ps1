@@ -34,7 +34,17 @@ function Get-Entities {
             switch ($_.Value.delete.type)
             {
                 "file" {
-                    if (Test-Path -Path $location -PathType Leaf) {
+                    if ($location -like '*[*]*') {
+                        $matchingFiles = Get-ChildItem -Path $location -File
+                        foreach ($file in $matchingFiles) {
+                            $fileItem = @{}
+                            $fileItem.location = $file.FullName
+                            $fileItem.size = $file.Length
+                            $fileItem.rule = $name
+                            $files.Add($fileItem)
+                            $sizeCounter += $fileItem.size
+                        }
+                    } elseif (Test-Path -Path $location -PathType Leaf) {
                         $fileItem = @{}
                         $fileItem.location = $location
                         $file = Get-Item $location
