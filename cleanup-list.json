@@ -53,5 +53,16 @@
       "location": "~/AppData/Local/Temp/update.zip"
     },
     "active": true
+  },
+  "delphi_linecse_server_log": {
+    "application": "Delphi",
+    "category": "IDE",
+    "entity_category": "log",
+    "description": "Delphi IDE licensing server logs. Contains sensitive information, like Serial Number and Registration Key in plain text.",
+    "delete": {
+      "type": "file",
+      "location": "~/sanct.log"
+    },
+    "active": true
   }
 }
