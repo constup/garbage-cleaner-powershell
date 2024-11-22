@@ -56,6 +56,9 @@ https://github.com/constup/garbage-cleaner/issues[issue].
 
 |`communication`
 | Communication and messaging applications (Viber, WhatsApp, Skype,...)
+
+|`game`
+| Games and game launchers (ex. Steam, Epic,...)
 |===
 
 == Links
