@@ -64,5 +64,16 @@
       "location": "~/sanct.log"
     },
     "active": true
+  },
+  "delphi_license_server_log_2": {
+    "application": "Delphi",
+    "category": "IDE",
+    "entity_category": "log",
+    "description": "Delphi licensing server logs. Contains information on Delphi and Licensing Service locations.",
+    "delete": {
+      "type": "file",
+      "location": "~/regwizard.log"
+    },
+    "active": true
   }
 }
