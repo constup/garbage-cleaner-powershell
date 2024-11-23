@@ -75,5 +75,16 @@
       "location": "~/regwizard.log"
     },
     "active": true
+  },
+  "windows_user_mode_dumps": {
+    "application": "Windows",
+    "category": "Windows",
+    "entity_category": "crash log",
+    "description": "Windows User-Mode application crash dump logs.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/CrashDumps/*.dmp"
+    },
+    "active": true
   }
 }
