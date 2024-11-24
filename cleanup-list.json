@@ -86,5 +86,16 @@
       "location": "~/AppData/Local/CrashDumps/*.dmp"
     },
     "active": true
+  },
+  "dotnet_telemetry_service": {
+    "application": ".NET",
+    "category": ".NET",
+    "entity_category": "telemetry",
+    "description": ".NET Core Telemetry data",
+    "delete": {
+      "type": "directory",
+      "location": "~/.dotnet/TelemetryStorageService"
+    },
+    "active": true
   }
 }

@@ -37,7 +37,8 @@
             "cache",
             "backup",
             "old version",
-            "temporary files"
+            "temporary files",
+            "telemetry"
           ]
         },
         "custom_category": {
