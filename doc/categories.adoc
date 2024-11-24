@@ -59,6 +59,9 @@ https://github.com/constup/garbage-cleaner/issues[issue].
 
 |`game`
 | Games and game launchers (ex. Steam, Epic,...)
+
+|`hardware`
+|Hardware related files.
 |===
 
 == Links
