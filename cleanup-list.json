@@ -97,5 +97,16 @@
       "location": "~/.dotnet/TelemetryStorageService"
     },
     "active": true
+  },
+  "scoop_cache": {
+    "application": "Scoop",
+    "category": "installer",
+    "entity_category": "cache",
+    "description": "Scoop.sh installer cache. Contains packaged versions of all previously installed or updated applications.",
+    "delete": {
+      "type": "file",
+      "location": "~/scoop/cache/*.*"
+    },
+    "active": true
   }
 }
