@@ -1,11 +1,11 @@
 function Show-Help {
-    $version = Get-Content -Path (Join-Path $PSScriptRoot ./version)
+    $version = Get-Content -Path (Join-Path $PSScriptRoot ../version)
     $helpText = @"
-    constUP Cleaner version $version
+    constUP Garbage Cleaner PowerShell version $version
     License: MPL 2.0 https://www.mozilla.org/en-US/MPL/2.0/
     Minimum required PowerShell version: 7
     ----------
-    For full documentation and advanced use guides visit: https://github.com/constup/cleaner/blob/master/README.adoc
+    For full documentation and advanced use guides visit: https://github.com/constup/garbage-cleaner-powershell/blob/master/README.adoc
     ----------
     Usage: pwsh .\constup-garbage-cleaner.ps1 [options...]
     -help                   Print this help.
