@@ -1,0 +1,27 @@
+= Testing
+:toc:
+:toclevels: 5
+
+== Prerequisites
+
+https://pester.dev/docs/quick-start[Pester 5.6] is used for unit tests in this project. Please note that Windows is shipped
+with much older version of Pester. For installation instructions follow the
+https://pester.dev/docs/introduction/installation[official guide].
+
+== Running tests
+
+To run the whole test suite (all available tests) with code coverage, use the link:../pester.ps1[`pester.ps1`] script:
+
+[source,shell]
+----
+pwsh .\pester.ps1
+----
+
+Otherwise, you can run individual tests in terminal by following the instructions in
+https://pester.dev/docs/quick-start[Pester quick start guide].
+
+== Testing conventions
+
+- All tests are located in the link:../tests/[tests] directory or its subdirectories.
+- All test files are following the naming convention `*.Tests.ps1`.
+- Coverage report is available at `./coverage/coverage.xml` (when you run the full test suite, of course);

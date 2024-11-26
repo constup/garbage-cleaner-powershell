@@ -177,6 +177,7 @@ The following documentation is also available:
 * link:doc/advanced-use.adoc[Advanced use] (including cleaning by property filters, for example: application,
 category,...)
 * link:doc/planned-features.adoc[Planned features] - what's coming up next
+* link:doc/testing.adoc[Testing] - Unit testing with Pester
 * link:CONTRIBUTING.adoc[Contributing] - guidelines for software contribution, feature requests and populating the
 cleanup list
 
