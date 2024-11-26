@@ -174,7 +174,7 @@ if (Test-Path $cleanupListFile)
             $registryEntries = $entities.totalRegistryEntries
             Write-Host 'Dry run summary:'
             Write-Host '----------'
-            Print-Size($size)
+            Display-Size($size)
             Write-Host "Total space saved (in exact bytes): $size"
             Write-Host "Total registry entries to delete: $registryEntries"
             Write-Host "----------"
@@ -278,7 +278,7 @@ if (Test-Path $cleanupListFile)
                 Write-Host '----------'
             }
 
-            Print-Size($totalSize)
+            Display-Size($totalSize)
             Write-Host "Total space saved (in exact bytes): $totalSize"
             Write-Host "Total registry entries deleted: $totalRegistryEntries"
         }

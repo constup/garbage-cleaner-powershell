@@ -1,4 +1,4 @@
-function Print-Size {
+function Display-Size {
     param (
         [Parameter(Mandatory=$true)]
         [long]$size
