@@ -1,0 +1,112 @@
+{
+  "jetbrains_java_error_heap_dump": {
+    "application": "JetBrains",
+    "category": "IDE",
+    "entity_category": "crash log",
+    "description": "Java error heap dump of JetBrains tools. Can be several gigabytes.",
+    "delete" : {
+      "type": "file",
+      "location": "~/java_error_in_*.hprof"
+    },
+    "active": true
+  },
+  "jetbrains_java_error_logs": {
+    "application": "JetBrains",
+    "category": "IDE",
+    "entity_category": "crash log",
+    "description": "Java error logs for various JetBrains tools.",
+    "delete": {
+      "type": "file",
+      "location": "~/java_error_in_*.log"
+    },
+    "active": true
+  },
+  "gradio_temporary_files": {
+    "application": "Gradio",
+    "category": "AI",
+    "entity_category": "temporary files",
+    "description": "User temporary files for Gradio UI. Gradio is a Python UI library used by many AI applications.",
+    "delete": {
+      "type": "directory",
+      "location": "~/AppData/Local/Temp/gradio"
+    },
+    "active": true
+  },
+  "wslg_rd_client_auto_trace": {
+    "application": "WSL",
+    "category": "Windows",
+    "entity_category": "log",
+    "description": "WSLg (Windows Subsystem for Linux GUI) remote desktop client auto trace logs. Can be generated when using Docker. Can be dozens of gigabytes.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Temp/DiagOutputDir/RdClientAutoTrace-*.etl"
+    },
+    "active": true
+  },
+  "viber_update_temporary_installation": {
+    "application": "Viber",
+    "category": "communication",
+    "entity_category": "temporary files",
+    "description": "Viber updater zipped installation.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Temp/update.zip"
+    },
+    "active": true
+  },
+  "delphi_linecse_server_log": {
+    "application": "Delphi",
+    "category": "IDE",
+    "entity_category": "log",
+    "description": "Delphi IDE licensing server logs. Contains sensitive information, like Serial Number and Registration Key in plain text.",
+    "delete": {
+      "type": "file",
+      "location": "~/sanct.log"
+    },
+    "active": true
+  },
+  "delphi_license_server_log_2": {
+    "application": "Delphi",
+    "category": "IDE",
+    "entity_category": "log",
+    "description": "Delphi licensing server logs. Contains information on Delphi and Licensing Service locations.",
+    "delete": {
+      "type": "file",
+      "location": "~/regwizard.log"
+    },
+    "active": true
+  },
+  "windows_user_mode_dumps": {
+    "application": "Windows",
+    "category": "Windows",
+    "entity_category": "crash log",
+    "description": "Windows User-Mode application crash dump logs.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/CrashDumps/*.dmp"
+    },
+    "active": true
+  },
+  "dotnet_telemetry_service": {
+    "application": ".NET",
+    "category": ".NET",
+    "entity_category": "telemetry",
+    "description": ".NET Core Telemetry data",
+    "delete": {
+      "type": "directory",
+      "location": "~/.dotnet/TelemetryStorageService"
+    },
+    "active": true
+  },
+  "scoop_cache": {
+    "application": "Scoop",
+    "category": "installer",
+    "entity_category": "cache",
+    "description": "Scoop.sh installer cache. Contains packaged versions of all previously installed or updated applications.",
+    "delete": {
+      "type": "file",
+      "location": "~/scoop/cache/*.*"
+    },
+    "active": true
+  }
+}
