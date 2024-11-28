@@ -108,5 +108,27 @@
       "location": "~/scoop/cache/*.*"
     },
     "active": true
+  },
+  "windows_icon_cache": {
+    "application": "Windows",
+    "category": "Windows",
+    "entity_category": "cache",
+    "description": "Windows icon cache",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Microsoft/Windows/Explorer/iconcache*.db"
+    },
+    "active": true
+  },
+  "windows_thumbnail_cache": {
+    "application": "Windows",
+    "category": "Windows",
+    "entity_category": "cache",
+    "description": "Windows thumbnail cache",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Local/Microsoft/Windows/Explorer/thumbcache*.db"
+    },
+    "active": true
   }
 }
