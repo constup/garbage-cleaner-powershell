@@ -6,9 +6,5 @@ The following features are planned to be developed (in no particular order of im
 
 * Activating and deactivating cleanup rules with a command, based on filters (application, category,...).
 * Excluding cleanup rules by filters (including them is already implemented).
-* Add Pester unit tests.
-* Comment based help
 * Ability to list only active applications, categories,...
-* Support for Linux.
-* Support for macOS.
 * Combining multiple cleanup lists in one command execution.
