@@ -105,6 +105,8 @@ or with GitHub CLI:
 gh repo clone constup/garbage-cleaner-powershell
 ----
 
+=== Updating
+
 To update, open terminal and enter the directory where constUP Garbage Cleaner is located, then run:
 
 [source,shell]
@@ -112,6 +114,12 @@ To update, open terminal and enter the directory where constUP Garbage Cleaner i
 git fetch origin master
 git pull origin master
 ----
+
+[IMPORTANT]
+====
+Please note that the default cleanup list bundled with constUP Garbage Cleaner will be updated along with the
+application. If you have yor own set of cleaning rules, make sure to store them in your own custom cleanup list file.
+====
 
 === Optional: Add constUP Garbage Cleaner to `PATH`
 
