@@ -7,20 +7,16 @@
 Simple, easy to use and configurable garbage cleaner for Windows. Deletes files, directories and registry entries.
 Written in PowerShell 7 with simple JSON configuration. Tested on PowerShell 7.4.
 
-=== What can it delete
+=== Quick info
 
-constUP Garbage cleaner can delete:
-
-* files
-* directories
-* Single Windows Registry values
-* All Windows Registry values inside a specified Key ("folder")
-
-Of course, if you want to clean anything which does not belong to the current user (for example from
-`HKEY_LOCAL_MACHINE` in Windows registry), or clean system files, you must first open PowerShell as administrator and
-then run constUP Garbage Cleaner.
-
-The default cleanup list bundled with constUP Garbage Cleaner does not require running as an administrator.
+* *A PowerShell script which can be run from terminal or automated to be run by your own scripts*
+* *Configurable with a simple JSON file*
+* *It can clean files, directories and registry values*
+* *It has a built-in cleanup list, but supports your own custom cleanup lists as well*
+** *The default cleanup list does not require administrative privileges*
+** *Each entry in the default cleanup list is carefully reviewed by consulting official documentation to verify that it
+is safe to delete*
+* *Granular cleaning using filters like application, category,...*
 
 === Preview of commands
 
