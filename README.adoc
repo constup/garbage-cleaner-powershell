@@ -20,6 +20,8 @@ Written in PowerShell 7 with simple JSON configuration. Tested on PowerShell 7.4
 ** *The default cleanup list does not require administrative privileges*
 ** *Each entry in the default cleanup list is carefully reviewed by consulting official documentation to verify that it
 is safe to delete*
+** *Custom cleanup list which you can expand whenever you need, without having to wait for the update or submit a feature request*
+** *Custom cleanup lists which you can easily share with anyone or have them on multiple devices*
 * *Granular cleaning using filters like application, category,...*
 
 === Preview of commands
