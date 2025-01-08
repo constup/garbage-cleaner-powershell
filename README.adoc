@@ -23,6 +23,7 @@ is safe to delete*
 ** *Custom cleanup list which you can expand whenever you need, without having to wait for the update or submit a feature request*
 ** *Custom cleanup lists which you can easily share with anyone or have them on multiple devices*
 * *Granular cleaning using filters like application, category,...*
+* *No tracking, no telemetry, no pinging home, completely free and open source*
 
 === Preview of commands
 
