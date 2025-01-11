@@ -36,6 +36,7 @@ param (
 . (Join-Path $PSScriptRoot ./src/remove-from-registry.ps1)
 . (Join-Path $PSScriptRoot ./src/math.ps1)
 . (Join-Path $PSScriptRoot ./src/get-entities.ps1)
+. (Join-Path $PSScriptRoot ./src/prevention-instructions.ps1)
 
 if ($help) {
     Show-Help
@@ -106,14 +107,14 @@ if (Test-Path $cleanupListFile)
     }
     elseif ($dryRun)
     {
-        $entities = Get-Entities -cleanupListFile $cleanupListFile -applications $applications -categories $categories -entityCategories $entityCategories -types $types -customCategories $customCategories
-
         $version = Get-Content -Path (Join-Path $PSScriptRoot ./version)
         Write-Host "constUP Garbage Cleaner $version - dry run"
 
+        $entities = Get-Entities -cleanupListFile $cleanupListFile -applications $applications -categories $categories -entityCategories $entityCategories -types $types -customCategories $customCategories
+
         if ($null -eq $entities)
         {
-            Write-Host "Nothing to do."
+            Write-Host "Everything is clean. Nothing to do."
 
             exit 0
         }
@@ -168,6 +169,11 @@ if (Test-Path $cleanupListFile)
                     Write-Host "There are no registry values to delete."
                 }
                 Write-Host "----------"
+
+                if ($entities.preventionInstructions.Count -gt 0)
+                {
+                    Write-PreventionInstructions -preventionInstructions $entities.preventionInstructions
+                }
             }
 
             $size = $entities.totalSize
@@ -205,7 +211,7 @@ if (Test-Path $cleanupListFile)
         $entities = Get-Entities -cleanupListFile $cleanupListFile -applications $applications -categories $categories -entityCategories $entityCategories -types $types -customCategories $customCategories
 
         if ($null -eq $entities) {
-            Write-Host "Nothing to do."
+            Write-Host "Everything is clean. Nothing to do."
 
             exit 0
         }

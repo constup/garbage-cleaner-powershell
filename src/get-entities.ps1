@@ -9,6 +9,8 @@ function Get-Entities {
         [string[]]$customCategories = @()
     )
 
+    . (Join-Path $PSScriptRoot ./prevention-instructions.ps1)
+
     $json = Get-Content -Raw $cleanupListFile | ConvertFrom-Json
     $filteredProperties = $json.PSObject.Properties | Where-Object {
         $_.Value.active -eq $true -and
@@ -24,6 +26,7 @@ function Get-Entities {
         $directories = New-Object System.Collections.Generic.List[object]
         $registryValues = New-Object System.Collections.Generic.List[object]
         $cleanerErrors = New-Object System.Collections.Generic.List[object]
+        $preventionInstructions = New-Object System.Collections.Generic.List[object]
 
         $sizeCounter = 0
         $registryCounter = 0
@@ -31,18 +34,30 @@ function Get-Entities {
         $filteredProperties | ForEach-Object {
             $location = $_.Value.delete.location
             $name = $_.Name
+            $instructions = $_.Value.instructions
             switch ($_.Value.delete.type)
             {
                 "file" {
                     if ($location -like '*[*]*') {
-                        $matchingFiles = Get-ChildItem -Path $location -File
-                        foreach ($file in $matchingFiles) {
-                            $fileItem = @{}
-                            $fileItem.location = $file.FullName
-                            $fileItem.size = $file.Length
-                            $fileItem.rule = $name
-                            $files.Add($fileItem)
-                            $sizeCounter += $fileItem.size
+                        # first check if there are any files which match the pattern, then process them
+                        $potentialyMatchingFiles = Get-ChildItem -Path (Split-Path $location) -Filter (Split-Path $location -Leaf) -File
+                        if ($potentialyMatchingFiles.Count -gt 0)
+                        {
+                            $matchingFiles = Get-ChildItem -Path $location -File
+                            foreach ($file in $matchingFiles)
+                            {
+                                $fileItem = @{}
+                                $fileItem.location = $file.FullName
+                                $fileItem.size = $file.Length
+                                $fileItem.rule = $name
+                                $files.Add($fileItem)
+                                $sizeCounter += $fileItem.size
+                            }
+
+                            if ($null -ne $instructions -and "" -ne $instructions) {
+                                $preventionInstructionsItem = Add-PreventionInstructions -name $name -location $location -instructions $instructions
+                                $preventionInstructions.Add($preventionInstructionsItem)
+                            }
                         }
                     } elseif (Test-Path -Path $location -PathType Leaf) {
                         $fileItem = @{}
@@ -52,6 +67,11 @@ function Get-Entities {
                         $fileItem.rule = $name
                         $files.Add($fileItem)
                         $sizeCounter += $fileItem.size
+
+                        if ($null -ne $instructions -and "" -ne $instructions) {
+                            $preventionInstructionsItem = Add-PreventionInstructions -name $name -location $location -instructions $instructions
+                            $preventionInstructions.Add($preventionInstructionsItem)
+                        }
                     }
                     elseif (Test-Path -Path $location -PathType Container)
                     {
@@ -69,6 +89,11 @@ function Get-Entities {
                         $directoryItem.rule = $name
                         $directories.Add($directoryItem)
                         $sizeCounter += $size
+
+                        if ($null -ne $instructions -and "" -ne $instructions) {
+                            $preventionInstructionsItem = Add-PreventionInstructions -name $name -location $location -instructions $instructions
+                            $preventionInstructions.Add($preventionInstructionsItem)
+                        }
                     }
                     elseif (Test-Path -Path $location -PathType Leaf)
                     {
@@ -89,6 +114,11 @@ function Get-Entities {
                             $registryValues.Add($registryValueItem)
                             $registryCounter += 1
                         }
+
+                        if ($null -ne $instructions -and "" -ne $instructions) {
+                            $preventionInstructionsItem = Add-PreventionInstructions -name $name -location $location -instructions $instructions
+                            $preventionInstructions.Add($preventionInstructionsItem)
+                        }
                     }
 
                     break
@@ -108,6 +138,11 @@ function Get-Entities {
                                     $registryCounter += 1
                                 }
                             }
+
+                            if ($null -ne $instructions -and "" -ne $instructions) {
+                                $preventionInstructionsItem = Add-PreventionInstructions -name $name -location $location -instructions $instructions
+                                $preventionInstructions.Add($preventionInstructionsItem)
+                            }
                         }
                     }
 
@@ -125,6 +160,7 @@ function Get-Entities {
         $result.directories = $directories
         $result.registryValues = $registryValues
         $result.cleanerErrors = $cleanerErrors
+        $result.preventionInstructions = $preventionInstructions
         $result.totalSize = $sizeCounter
         $result.totalRegistryEntries = $registryCounter
 

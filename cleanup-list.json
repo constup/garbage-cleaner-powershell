@@ -37,6 +37,7 @@
     "category": "Windows",
     "entity_category": "log",
     "description": "WSLg (Windows Subsystem for Linux GUI) remote desktop client auto trace logs. Can be generated when using Docker. Can be dozens of gigabytes.",
+    "instructions": "Real solution is not yet available, however there is a hack that works. To stop WSLg from making these files, stop WSL with `wsl --shutdown`, go to `~/AppData/Local/Temp/DiagOutputDir/`, delete the `RdClientAutoTrace` directory and create an empty file with the same name (`RdClientAutoTrace`) in its place. This will stop WSLg from creating new files.",
     "delete": {
       "type": "file",
       "location": "~/AppData/Local/Temp/DiagOutputDir/RdClientAutoTrace/RdClientAutoTrace-*.etl"
@@ -103,6 +104,7 @@
     "category": "installer",
     "entity_category": "cache",
     "description": "Scoop.sh installer cache. Contains packaged versions of all previously installed or updated applications.",
+    "instructions": "Scoop does not support disabling cache in configuration. Use the `--no-cache` flag instead, when issuing commands. Example: `scoop update --all --no-cache`.",
     "delete": {
       "type": "file",
       "location": "~/scoop/cache/*.*"

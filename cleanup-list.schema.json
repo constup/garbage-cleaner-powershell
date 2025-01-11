@@ -44,16 +44,22 @@
         "custom_category": {
           "type": "string"
         },
-        "description": {
+        "description": "object",
+        "properties": {
+          "type": "string"
+        },
+        "instructions": {
           "type": "string"
         },
         "delete": {
           "type": "object",
           "properties": {
-            "type": {
+            "type": "object",
+            "properties": {
               "type": "string",
               "enum": ["file", "directory", "registry value", "registry key"]
-            },
+            }
+          },
             "location": {
               "type": "string"
             }
@@ -73,7 +79,6 @@
       "delete",
       "active"
     ]
-    }
   },
   "additionalProperties": false
 }

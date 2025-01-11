@@ -20,9 +20,10 @@ Written in PowerShell 7 with simple JSON configuration. Tested on PowerShell 7.4
 ** *The default cleanup list does not require administrative privileges*
 ** *Each entry in the default cleanup list is carefully reviewed by consulting official documentation to verify that it
 is safe to delete*
-** *Custom cleanup list which you can expand whenever you need, without having to wait for the update or submit a feature request*
+** *Custom cleanup lists which you can expand whenever you need, without having to wait for the update or submit a feature request*
 ** *Custom cleanup lists which you can easily share with anyone or have them on multiple devices*
 * *Granular cleaning using filters like application, category,...*
+* *Built-in helpful instructions on how to prevent further garbage creation*
 * *No tracking, no telemetry, no pinging home, completely free and open source*
 
 === Preview of commands
@@ -178,11 +179,39 @@ this documentation shorter, we will not mention instructions for the custom clea
 just like in the example above. Just use the `-cleanupListFile` option and set the path to your own cleanup list.
 ====
 
+=== Dry run
+
+You can dry run constUP Garbage Cleaner with:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -dryRun
+----
+
+This will detect garbage on your system, but will not delete it. This option is useful when you want to roughly preview
+what is going to be deleted.
+
+==== Detailed dry run
+
+To get more detailed information about the garbage on your system without cleaning it, run:
+
+[source,shell]
+----
+pwsh .\constup-garbage-cleaner.ps1 -dryRun -detailed
+----
+
+This will:
+
+* List all garbage with their locations and sizes.
+* Each cleanup rule can have information on how to prevent garbage creation (relevant to that particular rule). Detailed
+dry run will show this information for garbage which was found on your system.
+
 == More documentation
 
 The following documentation is also available:
 
-* link:doc/dry-run.adoc[Dry run] (with cleanup list configuration file error detection)
+* link:doc/dry-run.adoc[Dry run] (with garbage creation prevention instructions and cleanup list configuration file
+error detection)
 * link:doc/cleanup-list-file.adoc[Cleanup list file and listing available applications, categories,...]
 ** link:doc/categories.adoc[Categories]
 * link:doc/advanced-use.adoc[Advanced use] (including cleaning by property filters, for example: application,

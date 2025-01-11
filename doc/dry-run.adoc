@@ -53,6 +53,23 @@ some_obsolete_log
 
 At the end, the dry run will also list the total savings, just like in the non-detailed mode.
 
+=== Garbage creation prevention instructions
+
+If you run a detailed dry run (`--dryRun --detailed`), you will also get instructions on how to prevent further creation
+of garbage. These instructions are available for some cleaning rules, where it makes sense.
+
+The result will look something like this:
+
+[source,text]
+----
+===Helpful info===
+Some useful information on how to prevent creation of garbage files which were found on your system:
+----------
+Rule name: scoop_cache
+Location: ~/scoop/cache/*.*
+Prevention instructions: Scoop does not support disabling cache in configuration. Use the `--no-cache` flag instead, when issuing commands. Example: `scoop update --all --no-cache`.
+----
+
 === Dry run also detects errors in cleanup list file
 
 Whether you start dry run in detailed or non-detailed mode, it will report some of the errors found in your cleanup list
