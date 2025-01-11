@@ -70,6 +70,11 @@ Location: ~/scoop/cache/*.*
 Prevention instructions: Scoop does not support disabling cache in configuration. Use the `--no-cache` flag instead, when issuing commands. Example: `scoop update --all --no-cache`.
 ----
 
+[IMPORTANT]
+====
+You will only get these instructions for garbage that was detected on your system and which is relevant to you.
+====
+
 === Dry run also detects errors in cleanup list file
 
 Whether you start dry run in detailed or non-detailed mode, it will report some of the errors found in your cleanup list
