@@ -24,6 +24,7 @@ param (
     [switch]$listEntityCategories,
     [switch]$listTypes,
     [switch]$listCustomCategories,
+    [switch]$listInstructions,
     # dry run
     [switch]$dryRun,
     [switch]$detailed
@@ -104,6 +105,11 @@ if (Test-Path $cleanupListFile)
             Write-Host $item
         }
         exit 0
+    }
+    elseif ($listInstructions)
+    {
+        $preventionInstructions = Show-PreventionInstructions($cleanupListFile)
+        Write-PreventionInstructions $preventionInstructions
     }
     elseif ($dryRun)
     {
