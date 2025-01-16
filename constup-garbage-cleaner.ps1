@@ -110,6 +110,7 @@ if (Test-Path $cleanupListFile)
     {
         $preventionInstructions = Show-PreventionInstructions($cleanupListFile)
         Write-PreventionInstructions $preventionInstructions
+        exit 0
     }
     elseif ($dryRun)
     {
