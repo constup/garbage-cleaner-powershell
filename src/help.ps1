@@ -25,6 +25,7 @@ function Show-Help {
     -listEntityCategories   View the list of all entity categories present in the cleanup file. (example: log, crash log,...).
     -listTypes              View the list of all garbage types present in the cleanup file. (example: file, directory,...).
     -listCustomCategories   View the list of all custom categories (which you have defined).
+    -listInstructions       View the list of all garbage creation prevention instructions.
     ----------
     Example - detailed dry run:
     $ pwsh .\constup-garbage-cleaner.ps1 -dryRun -detailed
