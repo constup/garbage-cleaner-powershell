@@ -17,10 +17,10 @@ Describe 'Remove-File' {
         $realPath = "TestDrive:\sample.txt".Replace('TestDrive:', (Get-PSDrive TestDrive).Root)
         Test-Path -Path "TestDrive:\sample.txt" | Should -BeTrue
 
-        $result = Remove-File -fileName "TestDrive:\sample.txt" -size 11
+        $result = Remove-File -fileName "TestDrive:\sample.txt" -size 1457520
 
         Should -Invoke Write-Host -Exactly 1
-        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Removed: $realPath - saved 11 bytes" }
+        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Removed: $realPath - saved 1457520 bytes (1.39 MB)" }
 
         Test-Path -Path "TestDrive:\sample.txt" | Should -BeFalse
         $result | Should -BeTrue
@@ -29,7 +29,7 @@ Describe 'Remove-File' {
     It 'Should return false, because file does not exist' {
         Test-Path -Path "TestDrive:\non_exisiting_sample.txt" | Should -BeFalse
 
-        $result = Remove-File -fileName "TestDrive:\non_existing_sample.txt" -size 11
+        $result = Remove-File -fileName "TestDrive:\non_existing_sample.txt" -size 1457520
         Should -Not -Invoke Write-Host
         $result | Should -BeFalse
     }
@@ -54,10 +54,10 @@ Describe 'Remove-Directory' {
     It 'Should delete a directory' {
         Test-Path -Path "TestDrive:\sample_directory" | Should -BeTrue
 
-        $result = Remove-Directory -directoryName "TestDrive:\sample_directory" -size 11
+        $result = Remove-Directory -directoryName "TestDrive:\sample_directory" -size 1457520
 
         Should -Invoke Write-Host -Exactly 1
-        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Removed: TestDrive:\sample_directory - saved 11 bytes" }
+        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Removed: TestDrive:\sample_directory - saved 1457520 bytes (1.39 MB)" }
 
         Test-Path -Path "TestDrive:\sample_directory" | Should -BeFalse
         $result | Should -BeTrue
@@ -66,7 +66,7 @@ Describe 'Remove-Directory' {
     It 'Should return false, because directory does not exist' {
         Test-Path -Path "TestDrive:\non_exisiting_directory" | Should -BeFalse
 
-        $result = Remove-Directory -directoryName "TestDrive:\non_existing_directory" -size 11
+        $result = Remove-Directory -directoryName "TestDrive:\non_existing_directory" -size 1457520
         Should -Not -Invoke Write-Host
         $result | Should -BeFalse
     }

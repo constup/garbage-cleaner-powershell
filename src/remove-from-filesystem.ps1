@@ -1,3 +1,5 @@
+. (Join-Path $PSScriptRoot ./math.ps1)
+
 function Remove-File {
     param (
         [Parameter(Mandatory=$true)]
@@ -8,8 +10,9 @@ function Remove-File {
 
     if (Test-Path $fileName) {
         $file = Get-Item $fileName
+        $calculatedSize = Calculate-Size -size $size
         Remove-Item $fileName
-        Write-Host "Removed: $file - saved $size bytes"
+        Write-Host "Removed: $file - saved $size bytes ($calculatedSize)"
 
         return $true
     }
@@ -26,8 +29,9 @@ function Remove-Directory {
     )
 
     if (Test-Path $directoryName) {
+        $calculatedSize = Calculate-Size -size $size
         Remove-Item -Path $directoryName -Recurse -Force
-        Write-Host "Removed: $directoryName - saved $size bytes"
+        Write-Host "Removed: $directoryName - saved $size bytes ($calculatedSize)"
 
         return $true
     }
