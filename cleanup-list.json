@@ -178,15 +178,15 @@
     },
     "active": true
   },
-    "cyberpunk_2077_crash_report_queue": {
-      "application": "Cyberpunk 2077",
-      "category": "game",
-      "entity_category": "crash log",
-      "description": "Cyberpunk 2077 crash logs and memory dumps.",
-      "delete": {
-        "type": "directory",
-        "location": "~/AppData/Local/REDEngine/ReportQueue"
-      },
-      "active": true
-    }
+  "cyberpunk_2077_crash_report_queue": {
+    "application": "Cyberpunk 2077",
+    "category": "game",
+    "entity_category": "crash log",
+    "description": "Cyberpunk 2077 crash logs and memory dumps.",
+    "delete": {
+      "type": "directory",
+      "location": "~/AppData/Local/REDEngine/ReportQueue"
+    },
+    "active": true
+  }
 }
