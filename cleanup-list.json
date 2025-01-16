@@ -80,7 +80,7 @@
   "windows_user_mode_dumps": {
     "application": "Windows",
     "category": "Windows",
-    "entity_category": "crash log",
+    "entity_category": "memory dump",
     "description": "Windows User-Mode application crash dump logs.",
     "delete": {
       "type": "file",
@@ -132,5 +132,61 @@
       "location": "~/AppData/Local/Microsoft/Windows/Explorer/thumbcache*.db"
     },
     "active": true
-  }
+  },
+  "davinci_resolve_crash_dump": {
+    "application": "DaVinci Resolve",
+    "category": "editing software",
+    "entity_category": "memory dump",
+    "description": "Crash memory dump.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Roaming/Blackmagic Design/DaVinci Resolve/Support/logs/Resolve.exe.*.dmp"
+    },
+    "active": true
+  },
+  "davinci_resolve_logs_1": {
+    "application": "DaVinci Resolve",
+    "category": "editing software",
+    "entity_category": "log",
+    "description": "Application logs.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Roaming/Blackmagic Design/DaVinci Resolve/Support/logs/*.log"
+    },
+    "active": true
+  },
+  "davinci_resolve_logs_2": {
+    "application": "DaVinci Resolve",
+    "category": "editing software",
+    "entity_category": "log",
+    "description": "Application logs.",
+    "delete": {
+      "type": "file",
+      "location": "~/AppData/Roaming/Blackmagic Design/DaVinci Resolve/Support/logs/LogArchive/*.txt"
+    },
+    "active": true
+  },
+  "microsoft_visual_studio_telemetry": {
+    "application": "Visual Studio",
+    "category": "IDE",
+    "entity_category": "telemetry",
+    "description": "Visual Studio Telemetry",
+    "instructions": "Disable telemetry in Visual Studio at `Help > Privacy > Privacy Settings`.",
+    "delete": {
+      "type": "directory",
+      "location": "~/AppData/Local/Temp/VSTelem"
+    },
+    "active": true
+  },
+    "cyberpunk_2077_crash_report_queue": {
+      "application": "Cyberpunk 2077",
+      "category": "game",
+      "entity_category": "crash log",
+      "description": "Cyberpunk 2077 crash logs and memory dumps.",
+      "delete": {
+        "type": "directory",
+        "location": "~/AppData/Local/REDEngine/ReportQueue"
+      },
+      "active": true
+    }
 }

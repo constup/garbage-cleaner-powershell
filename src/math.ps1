@@ -1,18 +1,21 @@
-function Display-Size {
+function Calculate-Size {
     param (
         [Parameter(Mandatory=$true)]
         [long]$size
     )
 
-    if ($size -gt 1024*1024*1024) {
-        $size = $size / 1GB
-        Write-Host "Total space saved: $size GB"
+    if ($size -ge 1GB) {
+        $result = [math]::Round($size / 1GB, 2)
+        return "$result GB"
+    } elseif ($size -ge 1MB) {
+        $result = [math]::Round($size / 1MB, 2)
+        return "$result MB"
     }
-    elseif ($size -gt 1024*1024) {
-        $size = $size / 1MB
-        Write-Host "Total space saved: $size MB"
-    } elseif ($size -gt 1024) {
-        $size = $size / 1KB
-        Write-Host "Total space saved: $size KB"
+    elseif ($size -ge 1KB) {
+        $result = [math]::Round($size / 1KB, 2)
+        return "$result KB"
+    }
+    else {
+        return "$size B"
     }
 }

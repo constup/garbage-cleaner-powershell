@@ -26,7 +26,8 @@
             "AI",
             "communication",
             "game",
-            "hardware"
+            "hardware",
+            "editing software"
           ]
         },
         "entity_category": {
@@ -38,7 +39,8 @@
             "backup",
             "old version",
             "temporary files",
-            "telemetry"
+            "telemetry",
+            "memory dump"
           ]
         },
         "custom_category": {

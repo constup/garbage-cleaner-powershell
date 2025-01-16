@@ -1,33 +1,35 @@
-Describe 'Display-Size' {
+Describe 'Calculate-Size' {
     BeforeAll {
         . $PSScriptRoot/../src/math.ps1
         Mock Write-Host {}
     }
 
-    It 'Should display size in KB.' {
-        Display-Size -size 1025
+    It 'Should calculate size in KB.' {
+        $result = Calculate-Size -size 1025
+        $result | Should -Be "1 KB"
 
-        Should -Invoke Write-Host -Exactly 1
-        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Total space saved: 1 KB" }
+        $result = Calculate-Size -size 1423
+        $result | Should -Be "1.39 KB"
     }
 
-    It 'Should display size in MB.' {
-        Display-Size -size 1048577
+    It 'Should calculate size in MB.' {
+        $result = Calculate-Size -size 1048577
+        $result | Should -Be "1 MB"
 
-        Should -Invoke Write-Host -Exactly 1
-        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Total space saved: 1 MB" }
+        $result = Calculate-Size -size 1457520
+        $result | Should -Be "1.39 MB"
     }
 
-    It 'Should display size in GB.' {
-        Display-Size -size 1073741825
+    It 'Should calculate size in GB.' {
+        $result = Calculate-Size -size 1073741825
+        $result | Should -Be "1 GB"
 
-        Should -Invoke Write-Host -Exactly 1
-        Should -Invoke Write-Host -Exactly 1 -ParameterFilter { $Object -eq "Total space saved: 1 GB" }
+        $result = Calculate-Size -size 1492501135
+        $result | Should -Be "1.39 GB"
     }
 
-    It 'Should not display anything.' {
-        Display-Size -size 1023
-
-        Should -Not -Invoke Write-Host
+    It 'Should not calculate anything.' {
+        $result = Calculate-Size -size 1023
+        $result | Should -Be "1023 B"
     }
 }

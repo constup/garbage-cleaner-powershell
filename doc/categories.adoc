@@ -62,6 +62,9 @@ https://github.com/constup/garbage-cleaner/issues[issue].
 
 |`hardware`
 |Hardware related files.
+
+|`editing software`
+|Software for editing of text, audio, video, 3D,...
 |===
 
 == Links

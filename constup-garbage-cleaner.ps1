@@ -134,10 +134,11 @@ if (Test-Path $cleanupListFile)
                         $rule = $fileItem.rule
                         $location = $fileItem.location
                         $size = $fileItem.size
+                        $calculatedSize = Calculate-Size -size $size
 
                         Write-Host $rule
                         Write-Host "    Location: $location"
-                        Write-Host "    Size: $size"
+                        Write-Host "    Size: $size / $calculatedSize"
                     }
                 } else {
                     Write-Host "There are no files to delete."
@@ -151,10 +152,11 @@ if (Test-Path $cleanupListFile)
                         $rule = $directoryItem.rule
                         $location = $directoryItem.location
                         $size = $directoryItem.size
+                        $calculatedSize = Calculate-Size -size $size
 
                         Write-Host $rule
                         Write-Host "    Location: $location"
-                        Write-Host "    Size: $size"
+                        Write-Host "    Size: $size / $calculatedSize"
                     }
                 } else {
                     Write-Host "There are no directories to delete."
@@ -186,7 +188,8 @@ if (Test-Path $cleanupListFile)
             $registryEntries = $entities.totalRegistryEntries
             Write-Host 'Dry run summary:'
             Write-Host '----------'
-            Display-Size($size)
+            $calculatedSize = Calculate-Size -size $size
+            Write-Host "Total space saved: $calculatedSize"
             Write-Host "Total space saved (in exact bytes): $size"
             Write-Host "Total registry entries to delete: $registryEntries"
             Write-Host "----------"
@@ -290,7 +293,8 @@ if (Test-Path $cleanupListFile)
                 Write-Host '----------'
             }
 
-            Display-Size($totalSize)
+            $calculatedSize= Calculate-Size -size $totalSize
+            Write-Host "Total space saved: $calculatedSize"
             Write-Host "Total space saved (in exact bytes): $totalSize"
             Write-Host "Total registry entries deleted: $totalRegistryEntries"
         }
