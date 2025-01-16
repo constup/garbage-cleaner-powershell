@@ -17,7 +17,7 @@ function Show-Applications {
         }
     }
 
-    return $result
+    return $result | Sort-Object
 }
 
 function Show-Categories {
@@ -37,7 +37,7 @@ function Show-Categories {
         }
     }
 
-    return $result
+    return $result | Sort-Object
 }
 
 function Show-EntityCategories {
@@ -57,7 +57,7 @@ function Show-EntityCategories {
         }
     }
 
-    return $result
+    return $result | Sort-Object
 }
 
 function Show-Types {
@@ -77,7 +77,7 @@ function Show-Types {
         }
     }
 
-    return $result
+    return $result | Sort-Object
 }
 
 function Show-CustomCategories {
@@ -97,7 +97,7 @@ function Show-CustomCategories {
         }
     }
 
-    return $result
+    return $result | Sort-Object
 }
 
 function Show-PreventionInstructions {
