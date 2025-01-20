@@ -1,7 +1,6 @@
 Describe 'Get-CurrentUserSteamRegistryKeyPath' {
     BeforeAll {
-        $registryPath = Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1"
-        . $registryPath
+        . (Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1")
     }
 
     It 'Should return registry path and key.' {
@@ -12,8 +11,7 @@ Describe 'Get-CurrentUserSteamRegistryKeyPath' {
 
 Describe 'Get-LocalMachineSteamRegistryKeyPath' {
     BeforeAll {
-        $registryPath = Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1"
-        . $registryPath
+        . (Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1")
     }
 
     It 'Should return registry path and key.' {
@@ -24,8 +22,7 @@ Describe 'Get-LocalMachineSteamRegistryKeyPath' {
 
 Describe 'Find-SteamDirectory' {
     BeforeAll {
-        $registryPath = Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1"
-        . $registryPath
+        . (Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\registry.ps1")
 
         Mock Get-CurrentUserSteamRegistryKeyPath {
             return @("TestRegistry:\Software\Valve\Steam", "SteamPath")

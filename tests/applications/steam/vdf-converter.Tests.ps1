@@ -1,7 +1,6 @@
 Describe 'ConvertTo-PSObject' {
     BeforeAll {
-        $vdfConverterPath = Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\vdf-converter.ps1"
-        . $vdfConverterPath
+        . (Resolve-Path "$PSScriptRoot\..\..\..\src\applications\steam\vdf-converter.ps1")
     }
 
     It "Should return a correct PSObject." {

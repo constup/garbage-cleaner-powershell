@@ -1,6 +1,6 @@
 Describe 'Show-Rules' {
     BeforeAll {
-        . $PSScriptRoot/../src/show-rules.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/show-rules.ps1")
     }
 
     Context 'There is at least one rule to display.' {

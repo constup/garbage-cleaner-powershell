@@ -1,6 +1,6 @@
 Describe 'Show-Applications' {
     BeforeAll {
-        . $PSScriptRoot/../src/show-by-property.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/show-by-property.ps1")
     }
 
     It 'Should display a list of all applications' {

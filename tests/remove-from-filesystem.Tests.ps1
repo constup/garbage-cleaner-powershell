@@ -1,6 +1,6 @@
 Describe 'Remove-File' {
     BeforeAll {
-        . $PSScriptRoot/../src/remove-from-filesystem.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/remove-from-filesystem.ps1")
 
         Mock Write-Host {
             param($Object)
@@ -37,7 +37,7 @@ Describe 'Remove-File' {
 
 Describe 'Remove-Directory' {
     BeforeAll {
-        . $PSScriptRoot/../src/remove-from-filesystem.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/remove-from-filesystem.ps1")
 
         Mock Write-Host {
             param($Object)

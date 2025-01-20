@@ -1,6 +1,6 @@
 Describe 'Calculate-Size' {
     BeforeAll {
-        . $PSScriptRoot/../src/math.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/math.ps1")
         Mock Write-Host {}
     }
 

@@ -1,6 +1,6 @@
 Describe 'Remove-RegistryValue' {
     BeforeAll {
-        . $PSScriptRoot/../src/remove-from-registry.ps1
+        . (Resolve-Path "$PSScriptRoot/../src/remove-from-registry.ps1")
 
         Mock Write-Host {
             param($Object)
